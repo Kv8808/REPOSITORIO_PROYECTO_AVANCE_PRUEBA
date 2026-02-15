@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Iniciar Sesión</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="login-wrap">
+    <div class="login-card">
+      <img src="logo.png" alt="logo" class="logo">
+      <h2>Iniciar Sesion</h2>
+      <input id="email" placeholder="Usuario (email)" />
+      <input id="password" type="password" placeholder="Contraseña" />
+      <button id="loginBtn">Ingresar</button>
+      <p id="msg" class="msg"></p>
+      <p style="font-size:12px;color:#666;margin-top:8px">Usa user1@example.com .. user10@example.com (pass: 123456)</p>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('loginBtn').onclick = async () => {
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+      const msg = document.getElementById('msg');
+      msg.textContent = '';
+      try {
+        const res = await fetch('/api/auth/login', {
+          method: 'POST', headers: {'Content-Type':'application/json'},
+          body: JSON.stringify({ email, password })
+        });
+        const data = await res.json();
+        if (res.ok) {
+          localStorage.setItem('token', data.token);
+          localStorage.setItem('userName', data.name || '');
+          location.href = '/index.html';
+        } else {
+          msg.textContent = data.msg || data.error || 'Credenciales inválidas';
+        }
+      } catch (err) {
+        msg.textContent = 'Error de conexión';
+        console.error(err);
+      }
+    };
+  </script>
+</body>
+</html>

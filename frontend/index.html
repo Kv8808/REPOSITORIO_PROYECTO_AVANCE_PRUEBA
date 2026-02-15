@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Panel - Trabajador</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <img src="logo.png" alt="logo" class="side-logo">
+      <nav>
+        <button class="side-btn" id="menuPacientes">Pacientes</button>
+        <button class="side-btn" id="menuUsuarios">Usuarios</button>
+        <button class="side-btn" id="menuSalir">Salir</button>
+      </nav>
+    </aside>
+
+    <main class="main">
+      <header class="main-header">
+        <h1 id="welcome">Panel - Trabajador</h1>
+        <div>
+          <button id="logout" class="small">Salir</button>
+        </div>
+      </header>
+
+      <section class="video-card card">
+        <div class="card-inner">
+          <h3>Video informativo</h3>
+          <video id="mainVideo" controls width="640" preload="metadata">
+            <source src="video.mp4" type="video/mp4">
+            Tu navegador no soporta video.
+          </video>
+        </div>
+      </section>
+
+      <section class="crud-card card">
+        <div class="crud-controls">
+          <button id="btnCreate">Nuevo</button>
+          <button id="btnEdit" disabled>Editar</button>
+          <button id="btnDelete" disabled>Eliminar</button>
+          <button id="btnCancel">Cancelar</button>
+          <div class="spacer"></div>
+          <input id="searchInput" placeholder="Buscar por nombre..." />
+          <button id="btnRefresh">Refrescar</button>
+        </div>
+
+        <div id="listArea" class="list-area">
+          <!-- tabla injectada por JS -->
+          <div class="loading">Cargando formularios...</div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Modal / formulario (hidden por defecto) -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-content card">
+      <h3 id="modalTitle">Crear formulario</h3>
+      <form id="patientForm" class="form-grid">
+        <input id="nombrePaciente" placeholder="Nombre paciente" required />
+        <input id="fechaIngreso" type="date" />
+        <input id="edad" placeholder="Edad" />
+        <input id="sexo" placeholder="Sexo" />
+        <input id="estadoCivil" placeholder="Estado civil" />
+        <input id="numeroHijos" placeholder="Número hijos" />
+        <input id="ocupacion" placeholder="Ocupación" />
+        <input id="calleYNúmero" placeholder="Calle y número" />
+        <input id="codigoPostal" placeholder="Código postal" />
+        <input id="localidad" placeholder="Localidad" />
+        <input id="municipio" placeholder="Municipio" />
+        <input id="estado" placeholder="Estado" />
+        <input id="diagnostico" placeholder="Diagnóstico" />
+        <input id="tratamiento" placeholder="Tratamiento" />
+        <input id="duracionDias" placeholder="Duración (días)" />
+        <input id="hospital" placeholder="Hospital" />
+        <input id="telefono" placeholder="Teléfono" />
+        <textarea id="observaciones" placeholder="Observaciones" style="grid-column:1/-1"></textarea>
+
+        <div style="grid-column:1/-1;display:flex;gap:8px;justify-content:flex-end">
+          <button type="submit" id="saveBtn">Guardar</button>
+          <button type="button" id="closeModal">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
