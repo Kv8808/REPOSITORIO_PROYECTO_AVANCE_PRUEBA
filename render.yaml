@@ -1,0 +1,10 @@
+# render.yaml (opcional) - guarda en la raíz
+services:
+  - type: web
+    name: REPOSITORIO-PROYECTO-FINAL
+    env: docker
+    region: oregon
+    branch: main
+    dockerfilePath: Dockerfile
+    autoDeploy: true
+    plan: free
